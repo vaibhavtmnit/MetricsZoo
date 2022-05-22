@@ -169,7 +169,7 @@ class PerfMetrics():
         
         data.sort_values(['y_pred'],ascending=False,inplace=True)
         
-        data['Prob. Range']=pd.qcut(y_proba[:,1],q=10)
+        data['Prob. Range']=pd.qcut(data['y_pred'],q=10)
         
         data = data.groupby(['Prob. Range']).agg({'y_pred':len,
                                           'y_true':np.sum,
