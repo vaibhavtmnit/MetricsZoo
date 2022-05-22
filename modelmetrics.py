@@ -1,3 +1,6 @@
+import pandas as pd
+import numpy as np
+
 from plotly.offline import init_notebook_mode, iplot
 from plotly import graph_objs
 import plotly.express as px
@@ -6,6 +9,8 @@ import plotly.figure_factory as ff
 from sklearn.metrics import roc_curve, auc,precision_recall_curve,cohen_kappa_score,\
 recall_score, precision_score, confusion_matrix
 init_notebook_mode(connected=True) 
+import sys
+sys.path.append("..")
 
 
 # This code is desgined to work on jupyter notebooks
@@ -159,7 +164,7 @@ class PerfMetrics():
             
     def score_distribution(self):
         
-        data = pd.DataFrame({'y_true':self.y_true['song_popularity'],
+        data = pd.DataFrame({'y_true':self.y_true,
               'y_pred':self.y_score[:,1]})
         
         data.sort_values(['y_pred'],ascending=False,inplace=True)
